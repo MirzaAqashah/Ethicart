@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="icon" type="image/x-icon" href="ethicart.png">
+    <link rel="stylesheet" href="css/product.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px 2rem;
+            background: #ffffff81;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .categories-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .categories {
+            display: flex;
+            gap: 10px;
+        }
+
+        .category-item {
+            flex: 0 0 auto;
+            padding: 10px 20px;
+            border: none;
+            background-color: orange;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+
+        }
+
+        .category-item:hover {
+            background-color: rgb(146, 96, 4);
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            border: 1px solid green;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #e2dddd88;
+            text-align: center;
+            padding: 10px;
+
+        }
+
+        .product img {
+            max-width: 100%;
+            max-height: 120px;
+            border-radius: 8px;
+        }
+
+        .product h1 {
+            font-size: 1.5rem;
+            margin: auto;
+        }
+
+        .product .price {
+            font-size: 1.2rem;
+            color: #28a745;
+            margin: auto;
+        }
+
+        .product p {
+            margin: auto;
+        }
+
+        .product .add-to-cart {
+            display: inline-block;
+            background: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            margin: auto;
+        }
+
+        .product .add-to-cart:hover {
+            background: #015304;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="hamburger-menu">☰</div>
+        <div class="logo">
+            <img src="css/imgs/ethicart.png" alt="Logo">
+        </div>
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="productpage.html">All Products</a></li>
+            <li><a href="contactpage.html">Contact Us</a></li>
+        </ul>
+        <div class="search-cart">
+            <div class="search">
+                <input class="srch" type="search" placeholder="Search...">
+                <a href="#"> <button class="btn">🔍</button></a>
+            </div>
+            <a href="checkoutpage.html"><button class="cart-btn">🛒</button></a>
+            <a href="index.html"><button class="login-btn">Login</button></a>
+        </div>
+    </nav>
+    <div class="products">
+        <div class="container">
+            <div class="categories-container">
+                <div class="categories"></div>
+            </div>
+            <div class="product-list"></div>
+        </div>
+    </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const productData = {
+                Food: [
+                    { name: "Apple", price: 1.5, description: "Fresh and juicy apples.", image: "css/imgs/product1.png" },
+                    { name: "Bread", price: 2.0, description: "Soft and fresh bread.", image: "css/imgs/product2.png" }
+                ],
+                Beverages: [
+                    { name: "Coffee", price: 5.0, description: "Rich and aromatic coffee.", image: "css/imgs/product3.png" },
+                    { name: "Tea", price: 3.5, description: "Refreshing green tea.", image: "css/imgs/product4.png" }
+                ],
+                "Men Clothes": [
+                    { name: "T-Shirt", price: 15.0, description: "Comfortable cotton T-shirt.", image: "css/imgs/product5.png" },
+                    { name: "Jeans", price: 40.0, description: "Stylish blue jeans.", image: "css/imgs/product6.png" }
+                ],
+                "Woman Clothes": [
+                    { name: "Dress", price: 25.0, description: "Elegant summer dress.", image: "css/imgs/product7.png" },
+                    { name: "Scarf", price: 10.0, description: "Silky smooth scarf.", image: "css/imgs/product8.png" }
+                ],
+                "Personal Care": [
+                    { name: "Shampoo", price: 8.0, description: "Nourishing hair shampoo.", image: "css/imgs/product9.png" },
+                    { name: "Soap", price: 3.0, description: "Gentle cleansing soap.", image: "css/imgs/product10.png" }
+                ]
+            };
+
+            const categories = Object.keys(productData);
+            const categoryContainer = document.querySelector(".categories");
+            const productList = document.querySelector(".product-list");
+
+            const searchInput = document.querySelector(".srch");
+            const searchButton = document.querySelector(".btn");
+
+            // Function to display category slider
+            function createCategorySlider() {
+                categories.forEach((category) => {
+                    const button = document.createElement("button");
+                    button.textContent = category;
+                    button.className = "category-item";
+                    button.addEventListener("click", () => {
+                        displayProducts(category);
+                    });
+                    categoryContainer.appendChild(button);
+                });
+            }
+
+            // Function to display products
+            function displayProducts(category) {
+                productList.innerHTML = "";
+                productData[category].forEach(product => {
+                    const productElement = document.createElement("div");
+                    productElement.classList.add("product");
+                    productElement.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}">
+                        <h1>${product.name}</h1>
+                        <p class="price">RM${product.price}</p>
+                        <p>${product.description}</p>
+                        <a href="#" class="add-to-cart">Add to Cart</a>
+                    `;
+                    productElement.querySelector(".add-to-cart").addEventListener("click", () => {
+                        alert(`${product.name} has been added to your cart!`);
+                        let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+                        cart.push(product);
+                        localStorage.setItem("cartItems", JSON.stringify(cart));
+                    });
+                    productList.appendChild(productElement);
+                });
+            }
+
+            // Search functionality
+            function searchProducts() {
+                const query = searchInput.value.trim().toLowerCase();
+                productList.innerHTML = "";
+
+                let found = false;
+
+                categories.forEach(category => {
+                    productData[category].forEach(product => {
+                        if (product.name.toLowerCase().includes(query)) {
+                            const productElement = document.createElement("div");
+                            productElement.classList.add("product");
+                            productElement.innerHTML = `
+                            <img src="${product.image}" alt="${product.name}">
+                            <h1>${product.name}</h1>
+                            <p class="price">RM${product.price}</p>
+                            <p>${product.description}</p>
+                            <a href="#" class="add-to-cart">Add to Cart</a>
+                        `;
+                            productElement.querySelector(".add-to-cart").addEventListener("click", () => {
+                                alert(`${product.name} has been added to your cart!`);
+                                let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+                                cart.push(product);
+                                localStorage.setItem("cartItems", JSON.stringify(cart));
+                            });
+                            productList.appendChild(productElement);
+                            found = true;
+                        }
+                    });
+                });
+
+                if (!found) {
+                    productList.innerHTML = "<p>No products found.</p>";
+                }
+            }
+
+            // Attach search functionality
+            searchButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                searchProducts();
+            });
+
+            // Initialize category slider
+            createCategorySlider();
+
+            // Display first category by default
+            displayProducts(categories[0]);
+        });
+
+        const menuIcon = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.navbar-links');
+
+        menuIcon.addEventListener('click', function () {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

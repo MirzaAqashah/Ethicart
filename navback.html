@@ -1,0 +1,157 @@
+<style>
+    /* Reset default styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-image: url(css/imgs/Background.jpeg);
+        background-size: 100%;
+        padding: 10px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    /* Hamburger Menu */
+    .hamburger-menu {
+        display: none;
+        font-size: 30px;
+        cursor: pointer;
+        color: white;
+    }
+
+    /* Logo */
+    .logo img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    /* Navbar Links */
+    .navbar-links {
+        list-style: none;
+        display: flex;
+        gap: 100px;
+    }
+
+    .navbar-links a {
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+    }
+
+    .navbar-links a:hover {
+        background-color: #146746;
+    }
+
+    /* Search and Cart */
+    .search-cart {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .search-cart input {
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .search {
+        padding: 5px;
+
+    }
+
+    .srch {
+        cursor: pointer;
+    }
+
+    /* Buttons */
+    .cart-btn,
+    .login-btn {
+        background-color: #146746;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .cart-btn a {
+        background-color: #146746;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .cart-btn:hover,
+    .login-btn:hover {
+        background-color: #0e4c34;
+    }
+
+    body {
+        background-image: url(css/imgs/Frame.svg);
+        background-size: 50%;
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 768px) {
+        .navbar {
+            justify-content: flex-start;
+        }
+
+        .hamburger-menu {
+            display: block;
+            margin-right: 15px;
+        }
+
+        .navbar-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background-color: #1a8e5f;
+            position: absolute;
+            top: 60px;
+            left: 0;
+        }
+
+        .navbar-links.active {
+            display: flex;
+        }
+    }
+</style>
+
+
+<nav class="navbar">
+    <div class="hamburger-menu">☰</div>
+    <div class="logo">
+        <img src="css/imgs/ethicart.png" alt="Logo">
+    </div>
+    <ul class="navbar-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="productpage.html">All Products</a></li>
+        <li><a href="contactpage.html">Contact Us</a></li>
+    </ul>
+    <div class="search-cart">
+        <div class="search">
+            <input class="srch" type="search" placeholder="Search...">
+            <a href="#"> <button class="btn">🔍</button></a>
+        </div>
+        <a href="checkoutpage.html"><button class="cart-btn">🛒</button></a>
+        <a href="index.html"><button class="login-btn">Login</button></a>
+    </div>
+</nav>
+<script src="js/script.js"></script>

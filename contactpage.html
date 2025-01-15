@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="icon" type="image/x-icon" href="ethicart.png">
+    <style>
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            padding: 50px 10%;
+            background-image: url("Frame.svg");
+            background-size: 50%;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            width: 40%;
+        }
+
+        .contact-info h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-item span {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 10px;
+            width: 40%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1a8e5f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #146746;
+        }
+
+        @media screen and (max-width: 768px) {
+            .contact-section {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .contact-info,
+            .contact-form {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar
+    <nav class="navbar">
+        <div class="hamburger-menu">☰</div>
+        <div class="logo">
+            <img src="ethicart.png" alt="Logo">
+        </div>
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="productpage.html">All Products</a></li>
+            <li><a href="contactpage.html">Contact Us</a></li>
+        </ul>
+        <div class="search-cart">
+            <div class="search">
+                <input type="search" placeholder="Search...">
+                <a href="#"><button class="srch">🔍</button></a>
+            </div>
+            <a href="checkoutpage.html"><button class="cart-btn">🛒</button></a>
+            <a href="index.html"><button class="login-btn">Login</button></a>
+        </div>
+    </nav> -->
+    <div id="navBar"></div>
+    <!-- Contact Section -->
+    <div id="content">
+        <section class="contact-section">
+            <div class="contact-info">
+                <h1>Contact Us</h1>
+                <p>Email, call, or send your message. We would like to hear your opinion.</p>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <p>+60 1234 56789</p>
+                </div>
+                <div class="contact-item">
+                    <span>📧</span>
+                    <p>ethicart@gmail.com</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <form id="contactForm">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Your message" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert('Thank you for contacting us! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>
