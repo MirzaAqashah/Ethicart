@@ -394,8 +394,6 @@
         </form>
     </div>
 
-
-    <script src="js/script.js"></script>
     <script src="js/photo.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
     <script>
@@ -410,13 +408,20 @@
                 alert("Invalid email or password");
             }
         });
-
+        
         function asd(a) {
             if (a == 1)
                 document.getElementById("log_in").style.display = "block";
             else
                 document.getElementById("log_in").style.display = "none";
         }
+        
+        const menuIcon = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.navbar-links');
+
+        menuIcon.addEventListener('click', function () {
+            navLinks.classList.toggle('active');
+        });
     </script>
 </body>
 
